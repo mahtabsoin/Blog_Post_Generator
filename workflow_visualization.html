@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Generation Workflow</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        .workflow {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        .agent {
+            width: 200px;
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            border: 2px solid #3498db;
+        }
+        .agent h3 {
+            margin-top: 0;
+            color: #3498db;
+        }
+        .agent p {
+            font-size: 14px;
+            color: #666;
+        }
+        .arrow {
+            position: absolute;
+            top: 50%;
+            left: 220px;
+            width: calc(100% - 440px);
+            height: 2px;
+            background-color: #3498db;
+        }
+        .arrow::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -4px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid #3498db;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+        }
+        .feedback-arrow {
+            position: absolute;
+            top: 75%;
+            right: 220px;
+            width: calc(50% - 220px);
+            height: 2px;
+            background-color: #e74c3c;
+            transform: translateY(20px);
+        }
+        .feedback-arrow::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -30px;
+            width: 2px;
+            height: 30px;
+            background-color: #e74c3c;
+        }
+        .feedback-arrow::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: -4px;
+            width: 0;
+            height: 0;
+            border-right: 10px solid #e74c3c;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+        }
+        .state {
+            margin-top: 30px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 5px solid #2ecc71;
+        }
+        .state h2 {
+            margin-top: 0;
+            color: #2ecc71;
+        }
+        .state-item {
+            margin-bottom: 10px;
+        }
+        .state-item strong {
+            display: inline-block;
+            width: 100px;
+            color: #555;
+        }
+        .decision {
+            position: absolute;
+            top: 110%;
+            right: 100px;
+            background: #f39c12;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .decision::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            width: 2px;
+            height: 20px;
+            background-color: #f39c12;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Multi-Agent Blog Generation Workflow</h1>
+        
+        <div class="workflow">
+            <div class="agent" id="researcher">
+                <h3>Researcher Agent</h3>
+                <p>Gathers information and key points about the topic</p>
+                <p><small>Model: llama3-70b-8192</small></p>
+            </div>
+            
+            <div class="arrow"></div>
+            
+            <div class="agent" id="outline">
+                <h3>Outline Generator</h3>
+                <p>Creates structured outline based on research</p>
+                <p><small>Model: llama3-70b-8192</small></p>
+            </div>
+            
+            <div class="arrow"></div>
+            
+            <div class="agent" id="writer">
+                <h3>Content Writer</h3>
+                <p>Writes full blog post following outline</p>
+                <p><small>Model: llama3-70b-8192</small></p>
+            </div>
+            
+            <div class="arrow"></div>
+            
+            <div class="agent" id="reviewer">
+                <h3>Reviewer/Editor</h3>
+                <p>Reviews and provides feedback on draft</p>
+                <p><small>Model: llama3-70b-8192</small></p>
+            </div>
+            
+            <div class="feedback-arrow"></div>
+            <div class="decision">Needs Revision?</div>
+        </div>
+        
+        <div class="state">
+            <h2>Shared State</h2>
+            <div class="state-item"><strong>Topic:</strong> <span>User-provided topic</span></div>
+            <div class="state-item"><strong>Research:</strong> <span>Comprehensive research findings</span></div>
+            <div class="state-item"><strong>Outline:</strong> <span>Structured blog outline</span></div>
+            <div class="state-item"><strong>Draft:</strong> <span>Full blog post content</span></div>
+            <div class="state-item"><strong>Feedback:</strong> <span>Review comments or "APPROVED"</span></div>
+            <div class="state-item"><strong>Final:</strong> <span>Approved blog post</span></div>
+        </div>
+    </div>
+</body>
+</html>

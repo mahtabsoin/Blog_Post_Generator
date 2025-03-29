@@ -1,0 +1,8 @@
+langgraph>=0.0.19
+groq>=0.4.1
+python-dotenv>=1.0.0
+langchain>=0.1.12
+langchain-groq>=0.0.1
+pydantic>=2.6.4
+typing-extensions>=4.9.0
+streamlit>=1.32.0
