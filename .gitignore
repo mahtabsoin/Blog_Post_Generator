@@ -33,6 +33,7 @@ ENV/
 *.md
 !README.md
 !APPROACH.md
+!GRAPH_STRUCTURE.md
 
 # IDE specific files
 .idea/
